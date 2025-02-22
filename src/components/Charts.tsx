@@ -41,9 +41,9 @@ export function Charts() {
     return (
         <Card className="">
             <CardHeader>
-                <CardTitle>Area Chart - Stacked</CardTitle>
+                <CardTitle>Trade Barang Masuk</CardTitle>
                 <CardDescription>
-                    Showing total visitors for the last 6 months
+                    Showing total goods for the last 6 months
                 </CardDescription>
             </CardHeader>
             <CardContent>

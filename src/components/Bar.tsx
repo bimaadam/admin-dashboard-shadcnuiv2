@@ -41,8 +41,8 @@ export function BarCharts() {
     return (
         <Card>
             <CardHeader>
-                <CardTitle>Bar Chart - Multiple</CardTitle>
-                <CardDescription>January - June 2024</CardDescription>
+                <CardTitle>Penjualan Periode 2025</CardTitle>
+                <CardDescription>January - June 2025</CardDescription>
             </CardHeader>
             <CardContent>
                 <ChartContainer config={chartConfig}>

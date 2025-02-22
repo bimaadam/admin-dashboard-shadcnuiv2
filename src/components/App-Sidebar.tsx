@@ -1,10 +1,19 @@
-"use client"
+"use client";
 
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
+import {
+    Calendar,
+    FolderPlusIcon,
+    Gauge,
+    Inbox,
+    Radical,
+    Search,
+    Settings,
+} from "lucide-react";
 
 import {
     Sidebar,
     SidebarContent,
+    SidebarFooter,
     SidebarGroup,
     SidebarGroupContent,
     SidebarGroupLabel,
@@ -12,15 +21,26 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
     // SidebarProvider,
-} from "@/components/ui/sidebar"
-import { usePathname } from "next/navigation"
+} from "@/components/ui/sidebar";
+import { usePathname } from "next/navigation";
+import { Dialog, DialogTitle, DialogContent } from "@radix-ui/react-dialog";
 
 // Menu items.
 const items = [
     {
-        title: "Home",
+        title: "Dashboard",
         url: "/",
-        icon: Home,
+        icon: Gauge,
+    },
+    {
+        title: "Tambah Produk",
+        url: "/produk",
+        icon: FolderPlusIcon,
+    },
+    {
+        title: "Hitung HPP",
+        url: "hitunghpp",
+        icon: Radical
     },
     {
         title: "Inbox",
@@ -42,35 +62,50 @@ const items = [
         url: "#",
         icon: Settings,
     },
-]
-
+];
 
 export function AppSidebar() {
     const pathname = usePathname();
     return (
-        <Sidebar className="bg-background text-secondary-foreground">
-            <div className="head text-justify text-muted-foreground text-2xl font-bold p-5">Admin Dashboard</div>
-            <SidebarContent className="bg-transparent">
-                <SidebarGroup>
-                    <SidebarGroupLabel className="">Menu</SidebarGroupLabel>
-                    <SidebarGroupContent>
-                        <SidebarMenu className="bg-background dark:backdrop-blur-3xl ">
-                            {items.map((item) => (
-                                <SidebarMenuItem className=" hover:bg-slate-500 " key={item.title}>
-                                    <SidebarMenuButton className="" asChild>
-                                        <a
-                                            href={item.url}
-                                            className={pathname === item.url ? " bg-slate-700" : ""}>
-                                            <item.icon />
-                                            <span>{item.title}</span>
-                                        </a>
-                                    </SidebarMenuButton>
-                                </SidebarMenuItem>
-                            ))}
-                        </SidebarMenu>
-                    </SidebarGroupContent>
-                </SidebarGroup>
-            </SidebarContent>
-        </Sidebar >
-    )
+        <>
+            <Dialog>
+                <DialogTitle>
+                    <DialogContent />
+                </DialogTitle>
+            </Dialog>
+            <Sidebar className="bg-background text-secondary-foreground">
+                <div className="head text-justify text-muted-foreground text-2xl font-bold p-5">
+                    Admin Dashboard
+                </div>
+                <SidebarContent className="bg-transparent">
+                    <SidebarGroup>
+                        <SidebarGroupLabel className="">Menu</SidebarGroupLabel>
+                        <SidebarGroupContent>
+                            <SidebarFooter>
+                                <SidebarMenu className="bg-background dark:backdrop-blur-3xl ">
+                                    {items.map((item) => (
+                                        <SidebarMenuItem
+                                            className=" hover:bg-slate-500 "
+                                            key={item.title}
+                                        >
+
+                                            <SidebarMenuButton className="" asChild>
+                                                <a
+                                                    href={item.url}
+                                                    className={pathname === item.url ? " bg-slate-700" : ""}
+                                                >
+                                                    <item.icon />
+                                                    <span>{item.title}</span>
+                                                </a>
+                                            </SidebarMenuButton>
+                                        </SidebarMenuItem>
+                                    ))}
+                                </SidebarMenu>
+                            </SidebarFooter>
+                        </SidebarGroupContent>
+                    </SidebarGroup>
+                </SidebarContent>
+            </Sidebar >
+        </>
+    );
 }

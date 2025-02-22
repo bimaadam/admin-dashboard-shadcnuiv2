@@ -2,10 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-// import { cookies } from "next/headers";
 import { AppSidebar } from "@/components/App-Sidebar";
 import { MenuBar } from "@/components/Menubar";
-// import { DialogContent, DialogTitle } from "@radix-ui/react-dialog";
 
 
 const geistSans = Geist({
@@ -23,9 +21,6 @@ export const metadata: Metadata = {
   description: "Admin dashboard",
 };
 
-// const cookieStore = await cookies();
-// const defaultOpen = cookieStore.get("sidebar.state")?.value === "true";
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -37,22 +32,20 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-secondary-foreground`}
       >
 
-
-        {/* <DialogContent />
-          <DialogTitle /> */}
         <main className="flex-1">
-          <SidebarProvider className="dark p-3 flex">
+          <SidebarProvider className="dark p-3 flex flex-col md:flex-row">
             <AppSidebar />
             <div className="flex flex-col flex-1">
               <SidebarTrigger className="text-white pb-2" />
               <MenuBar />
-              <div className="p-5">{children}</div>
+              <div className="p-5 flex-1">{children}</div>
+              <footer className="text-center text-gray-600 py-4">
+                Web By Bima Adam
+              </footer>
             </div>
           </SidebarProvider>
-
-          <footer className="text-white">Web By Bima Adam</footer>
         </main>
       </body>
-    </html >
+    </html>
   );
 }
